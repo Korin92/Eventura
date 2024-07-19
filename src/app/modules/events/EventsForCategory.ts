@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-const GET_EVENTOS_POR_CATEGORIA = gql`
-  query GetEventosPorCategoria($categoria: String!) {
+export const GET_EVENTS_BY_CATEGORY = gql`
+  query GetEventsByCategory($categoria: String!) {
     events(classificationName: $categoria) {
       id
       name
@@ -14,7 +14,6 @@ const GET_EVENTOS_POR_CATEGORIA = gql`
   }
 `;
 
-export default GET_EVENTOS_POR_CATEGORIA;
 
 export const GET_EVENTS = gql`
   query GetEvents {
@@ -22,7 +21,20 @@ export const GET_EVENTS = gql`
       id
       name
       localDate
-      venue
+      venues
+    }
+  }
+`;
+
+
+export const GET_EVENTS_LAST_WEEK = gql`
+  query GetEventsLastWeek {
+    eventsLastWeek {
+      id
+      name
+      venues {
+        name
+      }
     }
   }
 `;
