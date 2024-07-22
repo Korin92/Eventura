@@ -14,12 +14,16 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
+    "types": ["nativewind/types"],
     "paths": {
       "@/*": [
         "./*"
       ]
     }
   },
-  "include": ["src/**/*.ts"],
+  "tscFilesIncludes": ["app/@types"],
+  "include": ["src/**/*.ts",
+    "src/types/nativewind.d.ts"
+  ],
   "exclude": ["node_modules"],
 }

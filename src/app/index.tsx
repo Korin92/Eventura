@@ -1,12 +1,7 @@
-import {ApolloProvider} from "@apollo/client";
-import {client} from "@/src/adapters/graphql/apolloClient";
-import {HomePage} from "@/src/app/pages/home";
+import {Home} from '../features/home/Home';
 
-export default function Page() {
-  return (
-      <ApolloProvider client={client}>
-        <HomePage />
-      </ApolloProvider>
-  );
+export default function Main()  {
+    return (
+        <Home />
+    )
 }
-

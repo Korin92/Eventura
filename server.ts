@@ -1,11 +1,10 @@
 import { ApolloServer } from 'apollo-server';
-import { typeDefs } from './schema.ts';
-import { resolvers } from './resolvers.ts';
-import { GraphQLEventAdapter } from '../persistence/GraphQLEventAdapter.js';
-import * as dotenv from 'dotenv'
+import { typeDefs } from './src/adapters/graphql/schema.ts';
+import { resolvers } from './src/adapters/graphql/resolvers.ts';
+import { GraphQLEventAdapter } from './src/adapters/persistence/GraphQLEventAdapter.js';
+import * as dotenv from 'dotenv';
 
-
-dotenv.config()
+dotenv.config();
 
 const eventApiUrl = 'https://app.ticketmaster.com';
 

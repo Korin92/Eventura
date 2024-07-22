@@ -20,7 +20,6 @@ export const GET_EVENTS = gql`
     events {
       id
       name
-      localDate
       venues
     }
   }

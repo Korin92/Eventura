@@ -1,10 +1,9 @@
-import {Event} from "@/src/app/modules/events/models/Event.ts";
+import {Event} from "@/src/modules/events/models/Event.ts";
 
 export function formatEvent(event: any): Event {
     return {
         id: event.id,
         name: event.name,
-        localDate: event.localDate || 'Unknown Date',
         venues: event._embedded?.venues?.map((venue: any) => ({
             name: venue.name,
             url: venue.url,

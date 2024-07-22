@@ -1,8 +1,6 @@
-module.exports =  {
+module.exports = {
     presets: [
-      'babel-preset-expo',
+        'babel-preset-expo',
     ],
-    plugins: [
-    ]
-
+    plugins: ["nativewind/babel"],
 };

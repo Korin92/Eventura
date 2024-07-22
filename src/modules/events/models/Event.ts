@@ -1,7 +1,6 @@
 export interface Event {
     id: string;
     name: string;
-    localDate: string;
     venues: Venue[];
     _embedded?: {
         venues: Venue[];

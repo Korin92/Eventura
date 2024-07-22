@@ -1,8 +1,8 @@
 import {DataSource} from 'apollo-datasource';
 import fetch from 'node-fetch';
 import {EventPort} from '@/src/core/ports/EventPort';
-import {Event} from '@/src/app/modules/events/models/Event';
-import {formatEvent} from "@/src/app/components/utils/formatEvent.ts";
+import {Event} from '@/src/modules/events/models/Event';
+import {formatEvent} from "@/src/components/utils/formatEvent.ts";
 import * as process from "node:process";
 
 export class GraphQLEventAdapter extends DataSource implements EventPort {
@@ -12,7 +12,7 @@ export class GraphQLEventAdapter extends DataSource implements EventPort {
     constructor(apiUrl: string) {
         super();
         this.apiUrl = apiUrl;
-        this.apiKey = process.env.EXPO_PUBLIC_TICKETMASTER_API_KEY || '';
+        this.apiKey = process.env.TICKETMASTER_API_KEY || '';
     }
 
 
@@ -22,16 +22,7 @@ export class GraphQLEventAdapter extends DataSource implements EventPort {
 
         if (typeof data === 'object' && data !== null && '_embedded' in data) {
             const apiResponse = data as { _embedded: { events: Event[] } };
-            const events = apiResponse._embedded.events;
-
-            // Ensure venue and localDate are not null
-            events.forEach(event => {
-                if (!event.localDate) {
-                    event.localDate = 'Unknown Date';
-                }
-            });
-
-            return events;
+            return apiResponse._embedded.events;
         } else {
             throw new Error("Failed to fetch events: Unexpected response structure in getEvents");
         }
@@ -47,7 +38,6 @@ export class GraphQLEventAdapter extends DataSource implements EventPort {
 
         const response = await fetch(`${this.apiUrl}/discovery/v2/events.json?apikey=${this.apiKey}&startDateTime=${startDateString}&endDateTime=${endDateString}`);
         const data = await response.json();
-
 
         if (typeof data === 'object' && data !== null && '_embedded' in data) {
             const apiResponse = data as { _embedded: { events: Event[] } };
